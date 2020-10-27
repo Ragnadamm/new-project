@@ -1,10 +1,16 @@
 package com.project.professor.allocation.model;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -20,7 +26,12 @@ public class Professor {
 	
 	@Column(name = "cpf", nullable = false, unique = true)
 	private String cpf;
+	
+	@ManyToOne(fetch = FetchType.EAGER, optional = false)
+	private Departament departament;
 
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "professor", fetch = FetchType.LAZY)
+	private List<Allocation> allocations;
 	
 	public Professor() {
 		super();
