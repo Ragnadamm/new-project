@@ -28,7 +28,7 @@ public class Professor {
 	private String cpf;
 	
 	@ManyToOne(fetch = FetchType.EAGER, optional = false)
-	private Departament departament;
+	private Department department;
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "professor", fetch = FetchType.LAZY)
 	private List<Allocation> allocations;
