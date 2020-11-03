@@ -45,5 +45,13 @@ public class Department {
 	public void setName(String name) {
 		this.name = name;
 	}
+
+	public List<Professor> getProfessors() {
+		return professors;
+	}
+
+	public void setProfessors(List<Professor> professors) {
+		this.professors = professors;
+	}
 	
 }

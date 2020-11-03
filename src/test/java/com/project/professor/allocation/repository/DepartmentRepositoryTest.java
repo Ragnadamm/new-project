@@ -1,7 +1,6 @@
 package com.project.professor.allocation.repository;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,54 +22,76 @@ public class DepartmentRepositoryTest {
 	private DepartmentRepository departmentRepository;
 	
 	@Test
-	public void readAll() {
+	public void findAll() {
+		//Act
 		List<Department> departments = departmentRepository.findAll();
 		
-		for (Department department : departments) {
-			System.out.println(department);
-		}
+		//Print
+		departments.stream().forEach(System.out::println);
 	}
 	
 	@Test
-	public void readById() {
+	public void findById() {
+		//Arrange
 		Long id = 1L;
 		
-		Optional<Department> optionalDepartment = departmentRepository.findById(id);
-		Department department = optionalDepartment.orElse(null);
+		//Act
+		Department department = departmentRepository.findById(id).orElse(null);
 		
+		//Print
 		System.out.println(department);
 	}
 	
 	@Test
-	public void create() {
-		Department department = new Department();
-		department.setId(10L);
-		department.setName("Departamento de Teste 2");
+	public void findByNameContainingIgnoreCase() {
+		//Arrange
+		String name = "Department";
 		
-		Department department2 = departmentRepository.save(department);
-		System.out.println(department2);
+		//Act
+		List<Department> department =departmentRepository.findByNameContainingIgnoreCase(name);
+		
+		//Print
+		department.stream().forEach(System.out::println);
 	}
 	
 	@Test
-	public void update() {
+	public void save_create() {
+		//Arrange
+		Department department = new Department();
+		department.setId(null);
+		department.setName("Department 1");
+		
+		//Act
+		department = departmentRepository.save(department);
+		
+		//Print
+		System.out.println(department);
+	}
+	
+	@Test
+	public void save_update() {
+		//Arrange
 		Department department = new Department();
 		department.setId(1L);
-		department.setName("Departamento de Teste 3");
+		department.setName("Department 2");
 		
-		Department department2 = departmentRepository.save(department);
-		System.out.println(department2);
-	}
-	
-	@Test
-	public void deleteAll() {
-		departmentRepository.deleteAllInBatch();
+		//Act
+		department = departmentRepository.save(department);
+		System.out.println(department);
 	}
 	
 	@Test
 	public void deleteById() {
+		//Arrange
 		Long id = 1L;
 		
+		//Act
 		departmentRepository.deleteById(id);
 	}
-
+	
+	@Test
+	public void deleteAll() {
+		//Act
+		departmentRepository.deleteAllInBatch();
+	}
 }
