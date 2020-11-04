@@ -48,7 +48,7 @@ public class DepartmentRepositoryTest {
 		String name = "Department";
 		
 		//Act
-		List<Department> department =departmentRepository.findByNameContainingIgnoreCase(name);
+		List<Department> department = departmentRepository.findByNameContainingIgnoreCase(name);
 		
 		//Print
 		department.stream().forEach(System.out::println);

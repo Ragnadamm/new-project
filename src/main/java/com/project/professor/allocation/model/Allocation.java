@@ -27,7 +27,7 @@ public class Allocation {
 	private DayOfWeek dayOfWeek;
 	
 	@Column(name = "start", nullable = false, columnDefinition = "TIME")
-	private Time starHour;
+	private Time startHour;
 	
 	@Column(name = "end", nullable = false, columnDefinition = "TIME")
 	private Time endHour;
@@ -59,11 +59,11 @@ public class Allocation {
 	}
 
 	public Time getStarHour() {
-		return starHour;
+		return startHour;
 	}
 
 	public void setStarHour(Time starHour) {
-		this.starHour = starHour;
+		this.startHour = starHour;
 	}
 
 	public Time getEndHour() {
